@@ -7,12 +7,20 @@
 #include <numeric>
 #include <iomanip>
 int main() {
-    std::string file_location,row,date,low,high,close,Volume;
-    std::cout<<"Enter the location of the .csv file : "<<std::endl;
+    std::string file_location;
+    std::cout<<"Enter the location of the CSV file : "<<std::endl;
     std::cin>>file_location;
     std::ifstream data_set(file_location);
     if (data_set.is_open()) {
-        std::getline(data_set,row);
-        std::stringstream ss(row);
+        std::string row;
+        while (std::getline(data_set,row))
+            std::cout<<row<<std::endl;
+        }
+    else {
+        std::cerr<<"Error! Could not open or find the file at "<<file_location<<std::endl;
     }
-}
+
+    data_set.close();
+    return 0;
+    }
+
