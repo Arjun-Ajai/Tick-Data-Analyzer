@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 #include <numeric>
 #include <iomanip>
 
@@ -15,6 +16,8 @@ struct Tick {
     double close{};
     double adj_close{};
     double volume{};
+    double total_volume{};
+    double daily_move{};
 };
 
 int main() {
@@ -22,8 +25,8 @@ int main() {
     std::cout<<"Enter the location of CSV file : "<<std::endl;
     std::cin>>file_location;
     std::ifstream data_set(file_location);
+    std::vector<Tick> ticks;
     if (data_set.is_open()) {
-        std::vector<Tick> ticks;
         std::string row;
         std::getline(data_set,row);
         while (std::getline(data_set,row)){
@@ -63,7 +66,13 @@ int main() {
     else{
         std::cerr<<"Error! Could not open or find the file at "<<file_location<<std::endl;
     }
-
     data_set.close();
+
+    for (Tick& tick : ticks) {
+        tick.daily_move=((abs(tick.close-tick.open))/tick.open)*100;
+
+    }
+
+
     return 0;
 }
