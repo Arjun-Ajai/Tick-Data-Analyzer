@@ -1,7 +1,7 @@
 # Tick-Data-Analyzer 
 
 A C++20 command-line tool that parses historical OHLCV stock data
-from Yahoo Finance CSV files and computes key financial metrics
+from CSV files containing historical data and computes key financial metrics
 used in quantitative trading and market analysis.
 
 ## Metrics Computed
