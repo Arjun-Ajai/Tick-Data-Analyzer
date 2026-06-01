@@ -35,3 +35,6 @@ is included in `data/Sample-Stock-History.csv` to test immediately.
 - **Key STL:** `std::max_element`, `std::min_element`,
   `std::sort` with lambda comparators
 - **Data format:** OHLCV CSV
+- > Screenshot below shows output on the sample CSV.
+> ![Tick Data Analyser Screenshot](assets/Output.png)
+
