@@ -6,7 +6,7 @@ used in quantitative trading and market analysis.
 
 ## Metrics Computed
 
-- **VWAP** (Volume Weighted Average Price) — weights price by trading
+- **VWAP** (Volume Weighted Average Price) - weights price by trading
   activity, not a simple average
 - **Biggest single-day price move** — largest open-to-close % change
 - **Highest and lowest volume trading days** — spots unusual activity
