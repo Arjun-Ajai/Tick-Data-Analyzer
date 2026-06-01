@@ -88,7 +88,7 @@ int main() {
         [](const Tick& a, const Tick& b){
             return a.volume<b.volume;
         });
-    std::cout<<std::setw(26)<<"Highest Volume day:"<<std::setw(14)<<highest_volume_day->date<<std::setw(16)<<highest_volume_day->volume<<std::endl;
+    std::cout<<std::setw(26)<<"Highest Volume day:"<<std::setw(14)<<highest_volume_day->date<<std::setw(18)<<highest_volume_day->volume<<std::endl;
     auto lowest_volume_day = std::min_element(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
@@ -107,6 +107,6 @@ int main() {
         std::cout<<" "<<(i+1)<<". "<<std::setw(12)<<ticks[i].date<<std::setw(10)<<ticks[i].daily_move<<"%"<<std::endl;
     }
     std::cout<<std::endl;
-    std::cout << "========================================\n\n";
+    std::cout << "========================================\n";
     return 0;
 }
