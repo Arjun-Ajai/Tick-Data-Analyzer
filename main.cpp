@@ -75,37 +75,37 @@ int main() {
         typical_volume_price+=((tick.high+tick.low+tick.close)/3)*tick.volume;
     }
     vwap=typical_volume_price/total_volume;
+    std::cout << "========================================\n";
+    std::cout << "      TICK DATA ANALYSIS REPORT\n";
+    std::cout << "========================================\n\n";
+    std::cout<<std::setw(28)<<"VWAP : "<<vwap<<std::endl;
     if (ticks.empty()) {
         std::cerr<<"No data loaded";
         return 1;
     }
+    std::cout<<std::fixed<<std::setprecision(2);
     auto highest_volume_day = std::max_element(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.volume<b.volume;
         });
+    std::cout<<std::setw(28)<<"Highest Volume day : "<<highest_volume_day->date<<"  "<<highest_volume_day->volume<<std::endl;
     auto lowest_volume_day = std::min_element(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.volume<b.volume;
         });
+    std::cout<<std::setw(28)<<"Lowest Volume day: "<<lowest_volume_day->date<<"  "<<lowest_volume_day->volume<<std::endl;
     std::sort(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.daily_move>b.daily_move;
         });
-    std::cout<<std::fixed<<std::setprecision(2);
-    std::cout << "========================================\n";
-    std::cout << "      TICK DATA ANALYSIS REPORT\n";
-    std::cout << "========================================\n\n";
-    std::cout<<std::setw(28)<<"VWAP : "<<vwap<<std::endl;
     std::cout<<std::setw(28)<<"Biggest daily move:"<<ticks[0].date<<" "<<ticks[0].daily_move<<std::endl;
-    std::cout<<std::setw(28)<<"Highest Volume day : "<<highest_volume_day->date<<"  "<<highest_volume_day->volume<<std::endl;
-    std::cout<<std::setw(28)<<"Lowest Volume day: "<<lowest_volume_day->date<<"  "<<lowest_volume_day->volume<<std::endl;
 
     std::cout<<"The top 5 volatile days are : "<<std::endl<<std::endl;
     for (int i=0;i<5;i++) {
-        std::cout<<i<<"  "<<ticks[i].date<<"  "<<ticks[i].volume<<std::endl;
+        std::cout<<i<<"  "<<ticks[i].date<<"  "<<ticks[i].daily_move<<std::endl;
     }
     return 0;
 }
