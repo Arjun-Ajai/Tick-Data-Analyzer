@@ -74,38 +74,39 @@ int main() {
         typical_volume_price+=((tick.high+tick.low+tick.close)/3)*tick.volume;
     }
     vwap=typical_volume_price/total_volume;
+    std::cout<<std::fixed<<std::setprecision(2);
     std::cout << "========================================\n";
     std::cout << "      TICK DATA ANALYSIS REPORT\n";
     std::cout << "========================================\n\n";
-    std::cout<<std::setw(26)<<"VWAP:"<<std::setw(12)<<vwap<<std::endl;
+    std::cout<<std::setw(26)<<"VWAP:"<<std::setw(14)<<vwap<<std::endl;
     if (ticks.empty()) {
         std::cerr<<"No data loaded";
         return 1;
     }
-    std::cout<<std::fixed<<std::setprecision(2);
     auto highest_volume_day = std::max_element(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.volume<b.volume;
         });
-    std::cout<<std::setw(26)<<"Highest Volume day:"<<std::setw(14)<<highest_volume_day->date<<std::setw(15)<<highest_volume_day->volume<<std::endl;
+    std::cout<<std::setw(26)<<"Highest Volume day:"<<std::setw(14)<<highest_volume_day->date<<std::setw(16)<<highest_volume_day->volume<<std::endl;
     auto lowest_volume_day = std::min_element(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.volume<b.volume;
         });
-    std::cout<<std::setw(26)<<"Lowest Volume day:"<<std::setw(14)<<lowest_volume_day->date<<std::setw(15)<<lowest_volume_day->volume<<std::endl;
+    std::cout<<std::setw(26)<<"Lowest Volume day:"<<std::setw(14)<<lowest_volume_day->date<<std::setw(16)<<lowest_volume_day->volume<<std::endl;
     std::sort(
         ticks.begin(),ticks.end(),
         [](const Tick& a, const Tick& b){
             return a.daily_move>b.daily_move;
         });
-    std::cout<<std::setw(26)<<"Biggest daily move:"<<std::setw(14)<<ticks[0].date<<std::setw(15)<<ticks[0].daily_move<<"%"<<std::endl;
+    std::cout<<std::setw(26)<<"Biggest daily move:"<<std::setw(14)<<ticks[0].date<<std::setw(10)<<ticks[0].daily_move<<"%"<<std::endl;
     std::cout<<std::endl;
     std::cout<<"The top 5 volatile days are : "<<std::endl<<std::endl;
     for (int i=0;i<5;i++) {
-        std::cout<<" "<<(i+1)<<". "<<std::setw(12)<<ticks[i].date<<std::setw(15)<<ticks[i].daily_move<<"%"<<std::endl;
+        std::cout<<" "<<(i+1)<<". "<<std::setw(12)<<ticks[i].date<<std::setw(10)<<ticks[i].daily_move<<"%"<<std::endl;
     }
+    std::cout<<std::endl;
     std::cout << "========================================\n\n";
     return 0;
 }
